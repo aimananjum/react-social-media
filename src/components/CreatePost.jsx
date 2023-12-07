@@ -10,14 +10,7 @@ const CreatePost = () => {
   const tags = useRef();
   const { addPost } = useContext(PostListContext);
 
-  const handleSubmit = (
-    event,
-    userId,
-    postTitle,
-    postBody,
-    reactions,
-    tags
-  ) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     let tagsArray = tags.current.value.split(" ");
 
@@ -39,9 +32,7 @@ const CreatePost = () => {
   return (
     <form
       className="create-post"
-      onSubmit={(event) =>
-        handleSubmit(event, userId, postTitle, postBody, reactions, tags)
-      }
+      onSubmit={(event) =>  handleSubmit(event)}
     >
       <div className="mb-3">
         <label htmlFor="exampleInputPassword1" className="form-label">
