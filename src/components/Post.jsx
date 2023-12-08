@@ -24,7 +24,7 @@ const Post = ({ post }) => {
           <span className="visually-hidden">unread messages</span>
         </span>
         <div className="alert alert-success reaction" role="alert">
-          This post is reacted by {post.reaction} peoples
+          This post is reacted by {post.reactions} peoples
         </div>
       </div>
     </div>
