@@ -5,7 +5,7 @@ import { PostListContext } from "../store/post-list-store";
 const Post = ({ post }) => {
   const { deletePost } = useContext(PostListContext);
   return (
-    <div className="card post-card" style={{ width: "40rem" }}>
+    <div key={post.id} className="card post-card" style={{ width: "40rem" }}>
       <div className="card-body">
         <h5 className="card-title">{post.title}</h5>
         <p className="card-text">{post.body}</p>

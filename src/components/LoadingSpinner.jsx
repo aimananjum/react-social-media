@@ -1,8 +1,9 @@
 const LoadingSpinner = ()=>{
-    return <div class="text-center spinner">
-    <div class="spinner-border" role="status">
+    return 
+    <div className="text-center spinner">
+    <div className="spinner-border" role="status">
       
     </div>
-  </div>
+    </div>
 }
 export default LoadingSpinner;
