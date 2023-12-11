@@ -1,4 +1,4 @@
-import { createContext, useReducer,useState,useEffect } from "react";
+import { createContext, useReducer, useState, useEffect } from "react";
 
 export const PostListContext = createContext({
   postList: [],
@@ -13,49 +13,44 @@ const PostListReducer = (currPostList, action) => {
     newPostList = currPostList.filter(
       (post) => post.id !== action.payload.postId
     );
-
-  } 
-  else if(action.type==="ADD_INITIAL_POSTS"){
+  } else if (action.type === "ADD_INITIAL_POSTS") {
     newPostList = action.payload.posts;
-  }
-  else if (action.type === "ADD_POST") {
-    
+  } else if (action.type === "ADD_POST") {
     newPostList = [action.payload.post, ...currPostList];
   }
   return newPostList;
 };
 
 const PostListProvider = ({ children }) => {
-  const [fetching,setFetching] = useState(false);
-  useEffect(()=>{
+  const [fetching, setFetching] = useState(false);
+  useEffect(() => {
     setFetching(true);
-    fetch('https://dummyjson.com/posts')
-.then(res => res.json())
-.then(data =>{addInitialPosts(data.posts);
-setFetching(false);
-}
-);
-  },[]);
+    fetch("https://dummyjson.com/posts")
+      .then((res) => res.json())
+      .then((data) => {
+        addInitialPosts(data.posts);
+        setFetching(false);
+      });
+  }, []);
 
   const [postList, dispatchPostList] = useReducer(
     PostListReducer,
     DEFAULT_POST_LIST
   );
   const addPost = (post) => {
-    
     dispatchPostList({
       type: "ADD_POST",
       payload: { post },
     });
   };
-  const addInitialPosts = (posts)=>{
+  const addInitialPosts = (posts) => {
     dispatchPostList({
-      type:"ADD_INITIAL_POSTS",
-      payload:{
+      type: "ADD_INITIAL_POSTS",
+      payload: {
         posts,
-      }
-    })
-  }
+      },
+    });
+  };
   const deletePost = (postId) => {
     dispatchPostList({
       type: "DELETE_POST",
@@ -66,14 +61,16 @@ setFetching(false);
   };
 
   return (
-    <PostListContext.Provider value={{ postList, addPost, deletePost,fetching }}>
+    <PostListContext.Provider
+      value={{ postList, addPost, deletePost, fetching }}
+    >
       {children}
     </PostListContext.Provider>
   );
 };
 export default PostListProvider;
 
-const DEFAULT_POST_LIST=[];
+const DEFAULT_POST_LIST = [];
 
 // const DEFAULT_POST_LIST = [
 //   {

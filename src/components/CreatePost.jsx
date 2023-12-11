@@ -28,20 +28,16 @@ const CreatePost = () => {
     reactions.current.value = "";
     userId.current.value = "";
     tags.current.value = "";
-    fetch('https://dummyjson.com/posts/add', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(post)
+    fetch("https://dummyjson.com/posts/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(post),
     })
-    .then(res => res.json())
-    .then(resPost=>addPost(resPost));
-    
+      .then((res) => res.json())
+      .then((resPost) => addPost(resPost));
   };
   return (
-    <form
-      className="create-post"
-      onSubmit={(event) =>  handleSubmit(event)}
-    >
+    <form className="create-post" onSubmit={(event) => handleSubmit(event)}>
       <div className="mb-3">
         <label htmlFor="exampleInputPassword1" className="form-label">
           User Id

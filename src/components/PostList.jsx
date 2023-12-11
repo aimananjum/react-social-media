@@ -5,26 +5,21 @@ import WelcomeMessage from "./WelcomeMessage";
 import LoadingSpinner from "./LoadingSpinner";
 
 const PostList = () => {
-  const { postList,fetching } = useContext(PostListContext);
+  const { postList, fetching } = useContext(PostListContext);
   // const [fetchPosts,setFetchPosts] = useState(false);
-  
 
   // if(!fetchPosts){
-//     fetch('https://dummyjson.com/posts')
-// .then(res => res.json())
-// .then(data =>{addInitialPosts(data.posts)});
-// setFetchPosts(true);
+  //     fetch('https://dummyjson.com/posts')
+  // .then(res => res.json())
+  // .then(data =>{addInitialPosts(data.posts)});
+  // setFetchPosts(true);
   // }
-  
+
   return (
     <>
-    {fetching && <LoadingSpinner/>}
-    {
-     !fetching &&  postList.length===0 && <WelcomeMessage/>
-    }
-      {!fetching &&  postList.map((post) => (
-        <Post key={post.id} post={post} />
-      ))}
+      {fetching && <LoadingSpinner />}
+      {!fetching && postList.length === 0 && <WelcomeMessage />}
+      {!fetching && postList.map((post) => <Post key={post.id} post={post} />)}
     </>
   );
 };
